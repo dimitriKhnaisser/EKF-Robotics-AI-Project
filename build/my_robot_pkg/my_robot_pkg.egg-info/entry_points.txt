@@ -1,0 +1,3 @@
+[console_scripts]
+auto_rectangle = my_robot_pkg.auto_rectangle:main
+
