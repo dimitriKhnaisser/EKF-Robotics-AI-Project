@@ -4,7 +4,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import time
 from std_msgs.msg import Bool
-
+import numpy as np
 class RectangularDrive(Node):
     def __init__(self):
         super().__init__('rectangular_drive')
@@ -35,10 +35,9 @@ class RectangularDrive(Node):
             msg.linear.x = self.speed_linear
             msg.angular.z = 0.0
         else:
-            # Turning motion
-            msg.linear.x = 0.0
-            msg.angular.z = self.speed_angular
-
+            # Turn while moving (no stop, same trajectory)
+            msg.linear.x = self.speed_linear
+            msg.angular.z = self.speed_angular*0.5
         self.publisher.publish(msg)
         self.step_count += 1
 

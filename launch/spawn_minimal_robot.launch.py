@@ -23,7 +23,7 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            arguments=[urdf_file]
+            arguments=[urdf_file],
         ),
 
         # Spawn robot in Gazebo
@@ -31,6 +31,6 @@ def generate_launch_description():
             package='gazebo_ros',
             executable='spawn_entity.py',
             arguments=['-entity', 'turtlebot3_minimal', '-file', urdf_file],
-            output='screen'
+            output='screen',
         ),
     ])

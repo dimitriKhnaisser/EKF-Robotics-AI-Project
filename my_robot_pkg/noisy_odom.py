@@ -76,8 +76,8 @@ class NoisyOdom(Node):
         y_rot = x * math.sin(self.drift_theta) + y * math.cos(self.drift_theta)
 
         # ================= FINAL POSITION =================
-        noisy_msg.pose.pose.position.x = x_rot + self.drift_x + random.gauss(0, 0.04) + random.gauss(0, 0.08)
-        noisy_msg.pose.pose.position.y = y_rot + self.drift_y + random.gauss(0, 0.04) + random.gauss(0, 0.08)
+        noisy_msg.pose.pose.position.x = x_rot + self.drift_x + random.gauss(0, 0.04) + random.gauss(0, 0.1)
+        noisy_msg.pose.pose.position.y = y_rot + self.drift_y + random.gauss(0, 0.04) + random.gauss(0, 0.1)
         noisy_msg.pose.pose.position.z = msg.pose.pose.position.z
 
         # ================= ORIENTATION =================

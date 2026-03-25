@@ -36,7 +36,7 @@ def generate_launch_description():
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            arguments=[urdf_file]
+            arguments=[urdf_file],
         ),
 
         # Spawn your robot in Gazebo
@@ -44,39 +44,39 @@ def generate_launch_description():
             package='gazebo_ros',
             executable='spawn_entity.py',
             arguments=['-entity', 'minimal_robot', '-file', urdf_file],
-            output='screen'
+            output='screen',
         ),
         Node(
             package='my_robot_pkg',
             executable='ground_truth_extraction',
             name='ground_truth_extraction',
-            output='screen'
+            output='screen',
         ),
         Node(
             package='my_robot_pkg',
             executable='auto_rectangle',  # your motion script
             name='auto_rectangle',
-            output='screen'
+            output='screen',
         ),
         Node(
             package='my_robot_pkg',
             executable='noisy_odom',
-            name='noisy_odom'
+            name='noisy_odom',
         ),
         Node(
             package='my_robot_pkg',
             executable='noisy_data_extraction',
-            name='noisy_data_extraction'
+            name='noisy_data_extraction',
         ),
         Node(
             package='my_robot_pkg',
             executable='imu_fix',
-            name='imu_fix'
+            name='imu_fix',
         ),
         Node(
             package='my_robot_pkg',
             executable='ekf_data_extraction',
-            name='ekf_data_extraction'
+            name='ekf_data_extraction',
         ),
         ekf_launch,
     ])
