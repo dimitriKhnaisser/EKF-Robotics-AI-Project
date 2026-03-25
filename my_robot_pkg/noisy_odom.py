@@ -19,9 +19,9 @@ class NoisyOdom(Node):
         self.drift_theta = 0.0
 
         # ADD THIS (bias direction)
-        self.bias_x = random.uniform(0.0004, 0.0009)
-        self.bias_y = random.uniform(0.0004, 0.0009)
-        self.bias_theta = random.uniform(0.00015, 0.0004)
+        self.bias_x = random.uniform(0.0002, 0.0005)
+        self.bias_y = random.uniform(0.0002, 0.0005)
+        self.bias_theta = random.uniform(0.00008, 0.0002)
         # Store latest message only
         self.latest_msg = None
 
@@ -64,9 +64,9 @@ class NoisyOdom(Node):
 
         # ================= DRIFT =================
         # biased drift (ALWAYS grows)
-        self.drift_x += self.bias_x + random.gauss(0, 0.0005)
-        self.drift_y += self.bias_y + random.gauss(0, 0.0005)
-        self.drift_theta += self.bias_theta + random.gauss(0, 0.00025)
+        self.drift_x += self.bias_x + random.gauss(0, 0.0003)
+        self.drift_y += self.bias_y + random.gauss(0, 0.0003)
+        self.drift_theta += self.bias_theta + random.gauss(0, 0.00015)
         # ================= ORIGINAL POSITION =================
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
@@ -76,8 +76,8 @@ class NoisyOdom(Node):
         y_rot = x * math.sin(self.drift_theta) + y * math.cos(self.drift_theta)
 
         # ================= FINAL POSITION =================
-        noisy_msg.pose.pose.position.x = x_rot + self.drift_x + random.gauss(0, 0.04) + random.gauss(0, 0.1)
-        noisy_msg.pose.pose.position.y = y_rot + self.drift_y + random.gauss(0, 0.04) + random.gauss(0, 0.13)
+        noisy_msg.pose.pose.position.x = x_rot + self.drift_x + random.gauss(0, 0.04) + random.gauss(0, 0.08)
+        noisy_msg.pose.pose.position.y = y_rot + self.drift_y + random.gauss(0, 0.04) + random.gauss(0, 0.08)
         noisy_msg.pose.pose.position.z = msg.pose.pose.position.z
 
         # ================= ORIENTATION =================
